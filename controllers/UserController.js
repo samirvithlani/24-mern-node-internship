@@ -1,3 +1,20 @@
+
+const UserSchema = require("../models/UserModel")
+//userSChema is reference to the model
+
+const getAllUsersFromDb = async(req,res)=>{
+
+    //select * from Users
+   const users = await UserSchema.find()
+   res.status(200).json({
+         message: "Get all users",
+         data:users
+   })
+
+
+}
+
+
 const getAllUsers = async(req,res)=>{
 
     res.status(200).json({
@@ -29,5 +46,6 @@ const getUsers = async(req,res)=>{
 }
 module.exports = {
     getAllUsers,
-    getUsers
+    getUsers,
+    getAllUsersFromDb
 }

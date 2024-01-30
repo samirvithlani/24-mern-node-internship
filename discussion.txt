@@ -1,0 +1,89 @@
+NODE -->
+node package manager..
+NPM -->node_modules -->build files -->.js file --> functions -->fun...
+
+
+MERN :
+mongo db [no SQL ]
+[tables] --> collections --> document --> .json'
+
+E:
+express js --> middleware framework
+
+R:
+React
+
+n  :node js
+React fron , node bac..
+
+web -> MVC
+
+
+API -->app prog inter
+
+URL -> REST API,SOAP API
+API --> 
+
+GET : fetching data..
+POST :create
+PUT   : update
+DELETE :delete
+PATCH : partial update
+
+
+request -->
+response ->
+
+npm init --> vs code... app.js
+
+express
+ npm install express
+ npm install nodemon -g
+
+	node app.js --> nodemon app.js
+
+
+HTTP STATUS CODE
+
+
+models : schemas [db tables..]
+controllers : api
+util : reusable functionsss
+routes : controller's api calling....
+
+
+APP --(req)-->routes --> controller -->[db,model] -->(res)-->routes --> app[server]
+localhost:4000/users/users
+
+30-01-2024
+
+npm i mongoose
+
+folders..
+static api
+
+
+create UserModel [models...]
+
+create userSchema
+dont for to export..
+
+api --> controller -->function 
+
+require model [userModel...]
+
+getalluserFrom db--> 
+
+using model object
+call find() functions...--> 
+use await for same...
+
+ans send response...
+
+
+routes[part]s
+
+require usercontroller...
+
+create get api --> and call getalluser from db function
+localhost:4000/users/userfromdb
