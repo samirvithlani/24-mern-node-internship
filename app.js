@@ -1,52 +1,27 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const app = express();
 const PORT = 4000
 
-//localhost:4000/test
-app.get("/test",(req,res)=>{
-    console.log("test")
 
-//    res.send("test api called...")
-    res.json({message:"test api called..."})
+//connect to mongodb
+
+var db = mongoose.connect("mongodb://127.0.0.1:27017/localservice")
+db.then(()=>{
+    console.log("connected to mongodb")
+}).catch((err)=>{
+    console.log(err)
 })
 
+//require all routes...
 
-var users = [
-    {
-        id:1,
-        name:"Raj",
-        age:23
-    },
-    {
-        id:2,
-        name:"Ravi",
-        age:24
-    }
-]
-
-//localhost:4000/users
-app.get("/users",(req,res)=>{
-
-    res.json({
-        message:"users api called...",
-        users:users
-        //data:users
-        //obj:users
-    })
-
-})
-
-app.get("/users1",(req,res)=>{
-
-    res.status(200).json({
-        message:"users api called...",
-        data:users
-    })
+const userRoutes = require("./routes/UserRoutes.js")
 
 
-})
 
+//provinding to server all routes...
 
+app.use("/users",userRoutes)
 
 
 app.listen(PORT,()=>{
