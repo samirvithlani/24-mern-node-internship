@@ -44,8 +44,44 @@ const getUsers = async(req,res)=>{
     })
 
 }
+
+
+const createUser = async(req,res)=>{
+
+
+    const savedUser  = await UserSchema.create(req.body)
+    console.log("saved user",savedUser)
+
+
+    // console.log(req.body)
+    res.status(201).json({
+        message: "Create user",
+        data:savedUser
+    })
+
+}
+
+const getUserById = async(req,res)=>{
+
+    const id = req.params.id;
+    console.log("params...",req.params)
+    console.log("id",id)
+
+
+    const user = await UserSchema.findById(id)
+
+
+    res.status(200).json({
+        message: "Get user by id",
+        data:user
+    })
+
+}
+
 module.exports = {
     getAllUsers,
     getUsers,
-    getAllUsersFromDb
+    getAllUsersFromDb,
+    createUser,
+    getUserById
 }
