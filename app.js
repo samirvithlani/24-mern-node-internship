@@ -19,12 +19,15 @@ db.then(()=>{
 //require all routes...
 
 const userRoutes = require("./routes/UserRoutes.js")
+const employeeRoutes = require("./routes/EmployeeRoutes.js")
 
 
 
 //provinding to server all routes...
 
 app.use("/users",userRoutes)
+app.use("/employees",employeeRoutes)
+//localhost:4000/emplyees/employee
 
 
 app.listen(PORT,()=>{
