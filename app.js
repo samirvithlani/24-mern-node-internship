@@ -20,6 +20,8 @@ db.then(()=>{
 
 const userRoutes = require("./routes/UserRoutes.js")
 const employeeRoutes = require("./routes/EmployeeRoutes.js")
+const categoryRoutes = require("./routes/CategoryRoutes.js")
+const productRoutes = require("./routes/ProductRoutes.js")
 
 
 
@@ -27,6 +29,8 @@ const employeeRoutes = require("./routes/EmployeeRoutes.js")
 
 app.use("/users",userRoutes)
 app.use("/employees",employeeRoutes)
+app.use("/categories",categoryRoutes)
+app.use("/products",productRoutes)
 //localhost:4000/emplyees/employee
 
 
