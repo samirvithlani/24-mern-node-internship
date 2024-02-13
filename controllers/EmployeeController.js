@@ -1,8 +1,17 @@
 const employeeSchema = require("../models/EmployeeModel");
+const encrypt = require("../util/Encrypt");
 
 const createEmployee = async (req, res) => {
   try {
-    const savedEmployee = await employeeSchema.create(req.body);
+    const hashedPassword = encrypt.encryptPassword(req.body.password);
+    const employeeObj ={
+        name:req.body.name,
+        email:req.body.email,
+        password:hashedPassword,
+        age:req.body.age,
+        salary:req.body.salary
+    }
+    const savedEmployee = await employeeSchema.create(employeeObj);
     res.status(201).json({
       message: "Create employee",
       data: savedEmployee,
