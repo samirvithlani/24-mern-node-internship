@@ -149,10 +149,63 @@ const updateEmployee = async (req, res) => {
 
 }
 
+const loginEmployee = async (req, res) => {
+    //select * from users where email = ? and password = ?
+    //db -->password -->encrypt
+    // req.body.password 123456 -->
+    try{
+
+        //kunal@gmail.com
+        const email = req.body.email
+        const password = req.body.password //123456
+
+        const employeeFromEmail = await employeeSchema.findOne({email:email}) //db
+        if(employeeFromEmail!=null){
+            console.log("Employee found")
+            const flag = encrypt.comparePassword(password,employeeFromEmail.password)
+            if(flag==true){
+                res.status(200).json({
+                    message:"Employee login successfully",
+                    flag:1,
+                    data:employeeFromEmail
+                })
+            }
+            else{
+                res.status(404).json({
+                    message:"Employee not found",
+                    flag:-1
+                })
+            }
+
+        }
+        else{
+            res.status(404).json({
+                message:"Employee not found",
+                flag:-1
+            })
+        }
+
+
+
+    }
+    catch(err){
+
+        res.status(500).json({
+            message:"Error in login employee",
+            data:err,
+            flag:-1
+        })
+
+    }
+
+
+}
+
 module.exports = {
   createEmployee,
   getAllEmployees,
   deleteEmployee,
   getEmployeeById,
-  updateEmployee
+  updateEmployee,
+    loginEmployee,
 };
