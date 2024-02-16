@@ -1,5 +1,6 @@
 const employeeSchema = require("../models/EmployeeModel");
 const encrypt = require("../util/Encrypt");
+const mailUtil = require("../util/MailUtil");
 
 const createEmployee = async (req, res) => {
   try {
@@ -11,7 +12,10 @@ const createEmployee = async (req, res) => {
         age:req.body.age,
         salary:req.body.salary
     }
+    //maill
     const savedEmployee = await employeeSchema.create(employeeObj);
+    const mailRes = await mailUtil.mailSend(savedEmployee.email,"Welcome mail","Welcome to local service...")
+    //mail
     res.status(201).json({
       message: "Create employee",
       data: savedEmployee,
