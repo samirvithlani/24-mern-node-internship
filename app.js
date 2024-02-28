@@ -24,6 +24,7 @@ const userRoutes = require("./routes/UserRoutes.js")
 const employeeRoutes = require("./routes/EmployeeRoutes.js")
 const categoryRoutes = require("./routes/CategoryRoutes.js")
 const productRoutes = require("./routes/ProductRoutes.js")
+const uploadRoutes = require("./routes/UploadRoutes.js")
 
 
 
@@ -33,6 +34,7 @@ app.use("/users",userRoutes)
 app.use("/employees",employeeRoutes)
 app.use("/categories",categoryRoutes)
 app.use("/products",productRoutes)
+app.use("/upload",uploadRoutes)
 //localhost:4000/emplyees/employee
 
 
