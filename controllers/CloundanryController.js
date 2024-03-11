@@ -4,8 +4,8 @@ const uploadImage = async (file) => {
   
   cloundanry.config({
     cloud_name: "dpjoxqisl",
-    api_key: "292199526794599",
-    api_secret: "KKZHWhEwjA1Q0zUx4gVfcsvcVRY",
+    api_key: "add your key",
+    api_secret: "add your key",
   });
   
   const result = await cloundanry.uploader.upload(file)
