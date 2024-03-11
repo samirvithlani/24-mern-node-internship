@@ -82,7 +82,9 @@ const filterProduct = async (req, res) => {
   console.log(req.query);
   //const products = await productModel.find({ ...req.query }).populate("category");
   //regex
-  const products = await productModel.find({ name: { $regex: req.query.name } }).populate("category");
+  // const products = await productModel.find({ name: { $regex: req.query.name } }).populate("category");
+  //ignore case
+  const products = await productModel.find({ name: { $regex: req.query.name, $options: "i" } }).populate("category");
   if (products && products.length > 0) {
     res.status(200).json({
       message: "Product found.",
