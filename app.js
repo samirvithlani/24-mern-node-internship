@@ -11,7 +11,7 @@ app.use(express.json())
 
 //connect to mongodb
 
-var db = mongoose.connect("mongodb://127.0.0.1:27017/localservice")
+var db = mongoose.connect("mongodb+srv://samir:samir@cluster0.key63fx.mongodb.net/localservice")
 db.then(()=>{
     console.log("connected to mongodb")
 }).catch((err)=>{
