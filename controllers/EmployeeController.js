@@ -1,6 +1,77 @@
 const employeeSchema = require("../models/EmployeeModel");
 const encrypt = require("../util/Encrypt");
-const mailUtil = require("../util/MailUtil");
+const mailUtil = require("../util/MailUtil");   
+
+const resetPassword = async (req, res) => {
+
+    const email = req.body.email
+    const password = req.body.password
+    
+
+    console.log(email)
+    console.log(password)
+    
+
+    const hashedPassword = await encrypt.encryptPassword(password)
+
+    try{
+        
+        const updateEmployee = await employeeSchema.findOneAndUpdate({email:email},{$set:{password:hashedPassword}})
+        res.status(200).json({
+            message:"Password updated successfully",
+            flag:1,
+        })
+
+    }catch(err){
+        console.log(err)
+        res.status(500).json({
+            message:"Error in updating password",
+        })
+    }
+
+
+
+
+
+}
+
+const isEMployeeExist= async (req, res) => {
+
+    try{
+
+        const email = req.body.email
+
+        const getEmployeByEmail = await employeeSchema.findOne({email:email})
+        if(getEmployeByEmail){
+
+            res.status(200).json({
+                message:"Employee found",
+                flag:1,
+                data:getEmployeByEmail
+            })
+
+
+        }else{
+
+            res.status(404).json({
+                message:"Employee not found",
+                flag:-1
+            })
+        }
+
+
+
+    }catch(err){
+        res.status(500).json({
+            message:"Error in getting employee by email",
+        })
+
+    }
+
+
+
+}
+
 
 const createEmployee = async (req, res) => {
   try {
@@ -212,4 +283,6 @@ module.exports = {
   getEmployeeById,
   updateEmployee,
     loginEmployee,
+    isEMployeeExist,
+    resetPassword
 };
