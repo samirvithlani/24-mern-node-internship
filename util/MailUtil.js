@@ -6,7 +6,7 @@ const mailSend = async(to,subject,text)=>{
         to: to,
         subject: subject,
      //   text: text
-        html: "<h1>Welcome to app</h1><p>Thank you for joining us</p>"
+        html: `<h1>${text}</h1>`
     }
 
     const transporter = mailer.createTransport({
